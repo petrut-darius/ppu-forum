@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :posts
+  resources :subforums
   get "welcome/index"
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -18,4 +20,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "welcome#index"
+  resources :subforums do
+    resources :posts, only: [ :create ]
+  end
 end

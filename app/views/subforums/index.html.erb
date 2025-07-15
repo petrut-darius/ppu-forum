@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Subforums" %>
+
+<h1>Clase</h1>
+
+<div id="subforums">
+  <% @subforums.each do |subforum| %>
+    <strong>
+      <%= link_to "Clasa a #{subforum.title}-a", subforum, class: "link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" %>
+    </strong>
+    <br>
+  <% end %>
+</div>
+
+<%= link_to "Adauga o clasa", new_subforum_path %>

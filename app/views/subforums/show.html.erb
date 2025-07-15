@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @subforum %>
+
+<strong>Discutiile deja propuse</strong>
+<hr>
+<% @subforum.posts.each do |post|%>
+  <h3><%= link_to post.question, post_path(post) %></h3>
+  <p><%= post.description_of_question%></p>
+  <b><%= post.subforum.title %></b>
+  <hr>
+<% end %>
+
+<strong>Pune o intrebare despre <%= @subforum.title %>!</strong>
+<%= form_with(model: [@subforum, Post.new]) do |form| %>
+  <div>
+    <%= form.label :question, style: "display: block" %>
+    <%= form.text_field :question %>
+  </div>
+
+  <div>
+    <%= form.label :description_of_question, style: "display: block" %>
+    <%= form.text_field :description_of_question %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br><br>
+
+<div>
+  <%= link_to "Edit this subforum", edit_subforum_path(@subforum) %> |
+  <%= link_to "Back to subforums", subforums_path %>
+
+  <%= button_to "Destroy this subforum", @subforum, method: :delete %>
+</div>
