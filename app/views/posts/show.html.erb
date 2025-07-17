@@ -2,6 +2,30 @@
 
 <%= render @post %>
 
+
+<strong>Raspunsurile deja propuse</strong>
+<hr>
+<% @post.replies.each do |replie|%>
+  <p><%= replie.content %> by: </p><%= replie.user.email%>
+  <hr>
+<% end %>
+
+
+<strong>Spune rapunsul daca il stii!</strong>
+<%= form_with(model: [@post, Reply.new]) do |form| %>
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>

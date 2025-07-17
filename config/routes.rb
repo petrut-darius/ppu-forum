@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :replies
   resources :subforums
   get "welcome/index"
   devise_for :users, controllers: {
@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "welcome#index"
   resources :subforums do
-    resources :posts, only: [ :create ]
+    resources :posts
+  end
+
+  resources :posts do
+    resources :replies, only: [ :create, :destroy ]
   end
 end

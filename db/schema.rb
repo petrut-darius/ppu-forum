@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_15_203846) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_17_203826) do
   create_table "posts", force: :cascade do |t|
     t.string "question"
     t.string "description_of_question"
@@ -18,6 +18,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_203846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subforum_id"], name: "index_posts_on_subforum_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer "post_id"
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "subforums", force: :cascade do |t|
@@ -75,5 +85,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_15_203846) do
   end
 
   add_foreign_key "posts", "subforums"
+  add_foreign_key "replies", "posts"
+  add_foreign_key "replies", "users"
   add_foreign_key "taggings", "tags"
 end
