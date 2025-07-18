@@ -7,4 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+50.times do |x|
+  Post.create(question: Faker::Lorem.sentences(number: 1), description_of_question: Faker::Lorem.paragraph(sentence_count: 5), subforum_id: 1)
+end

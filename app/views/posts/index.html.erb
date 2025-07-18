@@ -1,8 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Posts" %>
-
 <h1>Posts</h1>
+<strong>Vezi ca daca apesi pe "Titlul discutiei" sau pe "Ce mai zice asta pe aci" o sa le ordoneze in functie alfabetica dupa ala pe care il alegi</strong>
+<%= render "posts/search_form"%>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= sort_link(@q, :question, "Titlul discutiei", default_order: :asc)%></th>
+      <th scope="col"><%= sort_link(@q, :description_of_question, "Ce mai zice asta pe aci")%></th>
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @searched_posts.each do |resulted_post|%>
+      <tr>
+        <th><%= resulted_post.question%></th>
+        <th><%= resulted_post.description_of_question%></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br><br>
+<hr style="color:red;">
 
 <div id="posts">
   <% @posts.each do |post| %>
