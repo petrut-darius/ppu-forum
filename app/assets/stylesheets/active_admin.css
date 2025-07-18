@@ -1,0 +1,188 @@
+body.active_admin.devise-page {
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#active_admin_content {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+#login form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#login form label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+#login form input[type="text"],
+#login form input[type="email"],
+#login form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+#login form input[type="text"]:focus,
+#login form input[type="email"]:focus,
+#login form input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+#login form input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#login .links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#login .links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+#login .links a:hover {
+  text-decoration: underline;
+}
+
+
+
+body.active_admin {
+  background-color: #f9fafb;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+
+#header {
+  background-color: #1e293b;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#header h1, #header a, #tabs li a {
+  color: #fff !important;
+}
+
+#tabs li.current a {
+  background-color: #334155;
+  color: #fff;
+}
+
+#tabs li a:hover {
+  background-color: #475569;
+}
+
+
+.dashboard_section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+
+.index_table {
+  background-color: #fff;
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.index_table th, .index_table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.index_table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.index_table th {
+  background-color: #f1f5f9;
+  color: #333;
+  font-weight: 500;
+}
+
+
+.action_items .action_item a,
+.input_actions .button {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.action_items .action_item a:hover,
+.input_actions .button:hover {
+  background-color: #2563eb;
+}
+
+.batch_actions_selector {
+  margin-top: 10px;
+}
+
+.inputs input[type="text"],
+.inputs input[type="email"],
+.inputs input[type="password"],
+.inputs select,
+.inputs textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+
+.flash {
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.flash.notice {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.flash.alert {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
