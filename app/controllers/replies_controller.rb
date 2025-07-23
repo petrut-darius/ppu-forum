@@ -22,8 +22,15 @@ class RepliesController < ApplicationController
   # POST /replies or /replies.json
   def create
     @post = Post.find(params[:post_id])
+    parent_id = params[:reply][:parent_id]
+
     @reply = @post.replies.new(reply_params)
     @reply.user = current_user
+    if parent_id.present?
+      @reply.parent_id = parent_id
+    else
+      @reply.parent_id = @post.id
+    end
 
     respond_to do |format|
       if @reply.save

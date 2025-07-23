@@ -1,27 +1,70 @@
+<style>
+  .codeBlock {
+    display: none;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    font-family: monospace;
+  }
+  .showCodeBtn {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
+</style>
 <p style="color: green"><%= notice %></p>
 
 <%= render @post %>
 
 
 <strong>Raspunsurile deja propuse</strong>
-<hr>
+<div style="background-color: #aeccfc;padding-top:1rem;">
 <% @post.replies.each do |replie|%>
-  <p><%= replie.content %> by: </p><%= replie.user.email%>
-  <hr>
-<% end %>
-
-
-<strong>Spune rapunsul daca il stii!</strong>
-<%= form_with(model: [@post, Reply.new]) do |form| %>
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_field :content %>
+  <% if replie.parent_id != replie.post_id%>
+    <p style="background-color: #444;">Raspunde la intrebarea "<b class= "text-info"><%= Reply.find_by(replie.parent_id).content%>"</b></p>
+  <% end %>
+  <div class="reply-card">
+    <div class="author-panel">
+      <p class="username"><%= replie.user.email %></p>
+    </div>
+    <div class="content-panel">
+      <p class="posted-at">Posted <%= replie.created_at.strftime("%B %d, %Y") %> <%= "(edited)" if replie.updated_at > replie.created_at %></p>
+      <div class="post-content"><%= simple_format(replie.content) %></div>
+    </div>
   </div>
+  <p class="show-reply-toggle">💬 Reply to this!</p>
+  <div class="nested-reply-form" style="display: none;">
+    <%= form_with(model: [@post, replie, Reply.new], html: { class: "reply-form" }) do |form| %>
+      <%= form.hidden_field :parent_id, value: replie.id %>
 
-  <div>
-    <%= form.submit %>
+      <div class="form-group">
+        <%= form.label :content, "Răspuns", class: "form-label" %>
+        <%= form.text_area :content, rows: 3, class: "form-input" %>
+      </div>
+
+      <div class="form-actions">
+        <%= form.submit "Trimite răspuns", class: "form-button small" %>
+      </div>
+    <% end %>
   </div>
+<hr>
 <% end %>
+</div>
+
+<div class="reply-form-wrapper">
+  <strong class="reply-heading">💡 Spune răspunsul dacă îl știi!</strong>
+
+  <%= form_with(model: [@post, Reply.new], html: { class: "reply-form" }) do |form| %>
+    <div class="form-group">
+      <%= form.label :content, "Scrie răspunsul tău", class: "form-label" %>
+      <%= form.text_area :content, rows: 4, class: "form-input" %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Trimite Răspuns", class: "form-button" %>
+    </div>
+  <% end %>
+</div>
+
 
 
 
@@ -32,3 +75,15 @@
 
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>
+
+
+<script>
+document.querySelectorAll('.show-reply-toggle').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const form = btn.nextElementSibling;
+    if (!form) return;
+    const isHidden = window.getComputedStyle(form).display === 'none';
+    form.style.display = isHidden ? 'block' : 'none';
+  });
+});
+</script>

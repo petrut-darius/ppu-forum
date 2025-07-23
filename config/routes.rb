@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    resources :replies, only: [ :create, :destroy ]
+    resources :replies, only: [ :create, :destroy ] do
+      resources :replies, only: [ :create ]
+    end
   end
 end
