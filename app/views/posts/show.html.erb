@@ -19,8 +19,8 @@
 <strong>Raspunsurile deja propuse</strong>
 <div style="background-color: #aeccfc;padding-top:1rem;">
 <% @post.replies.each do |replie|%>
-  <% if replie.parent_id != replie.post_id%>
-    <p style="background-color: #444;">Raspunde la intrebarea "<b class= "text-info"><%= Reply.find_by(replie.parent_id).content%>"</b></p>
+  <% if replie.parent_id.present? %>
+    <p style="background-color: #444;">Raspunde la intrebarea "<b class= "text-info"><%=Reply.find_by(id: replie.parent_id)&.content%>"</b></p>
   <% end %>
   <div class="reply-card">
     <div class="author-panel">

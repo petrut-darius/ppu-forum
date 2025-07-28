@@ -13,4 +13,6 @@ class User < ApplicationRecord
       user.avatar_url = auth.info.image
     end
   end
+
+  has_many :notifications, as: :recipient, dependent: :destroy
 end

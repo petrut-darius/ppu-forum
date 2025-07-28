@@ -23,13 +23,14 @@ class RepliesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     parent_id = params[:reply][:parent_id]
-
     @reply = @post.replies.new(reply_params)
     @reply.user = current_user
+
     if parent_id.present?
-      @reply.parent_id = parent_id
-    else
-      @reply.parent_id = @post.id
+      parent = Reply.find_by(id: parent_id)
+      if parent && parent.post_id == @post.id
+        @reply.parent_id = parent_id
+      end
     end
 
     respond_to do |format|
