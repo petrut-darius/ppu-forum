@@ -1,0 +1,5 @@
+<div>
+  <% user.notifications.each do |notification| %>
+    <%= link_to " Intrebarea cu numarul #{notification.params[:record].id} a fost creata! Vizualizeaza!", post_path(notification.params[:record].id) %>
+  <% end %>
+</div>
